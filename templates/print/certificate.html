@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>شهادة مدرسية</title>
+    <link rel="stylesheet" href="/static/css/footer.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .certificate {
+            border: 5px solid #000;
+            padding: 40px;
+            width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .header {
+            margin-bottom: 40px;
+        }
+        .school-name {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .certificate-title {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        .student-info {
+            margin-bottom: 40px;
+            text-align: right;
+        }
+        .student-info p {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+        .grades {
+            margin: 30px 0;
+            width: 100%;
+        }
+        .grades table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .grades th, .grades td {
+            border: 1px solid #000;
+            padding: 8px;
+        }
+        .footer {
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .signature {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate">
+        <div class="header">
+            <div class="school-name">مدرستنا</div>
+            <div class="certificate-title">شهادة مدرسية</div>
+        </div>
+        
+        <div class="student-info">
+            <p><strong>الطالب/ة:</strong> {{ student.first_name }} {{ student.last_name }}</p>
+            <p><strong>رقم الطالب:</strong> {{ student.student_id }}</p>
+            <p><strong>الصف:</strong> {{ student.classes.name }}</p>
+            <p><strong>العام الدراسي:</strong> 2024-2025</p>
+        </div>
+        
+        <div class="grades">
+            <table>
+                <thead>
+                    <tr>
+                        <th>المادة</th>
+                        <th>الدرجة</th>
+                        <th>التقدير</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for grade in student.grade_set.all %}
+                    <tr>
+                        <td>{{ grade.subject.name }}</td>
+                        <td>{{ grade.grade }}</td>
+                        <td>
+                            {% if grade.grade >= 90 %}ممتاز
+                            {% elif grade.grade >= 80 %}جيد جداً
+                            {% elif grade.grade >= 70 %}جيد
+                            {% elif grade.grade >= 60 %}مقبول
+                            {% else %}راسب
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="footer">
+            <div class="signature">
+                <p>مدير المدرسة</p>
+                <div style="margin-top: 50px;">_____________</div>
+            </div>
+            <div class="signature">
+                <p>ختم المدرسة</p>
+                <div style="margin-top: 50px;">_____________</div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 30px; text-align: left;">
+            <p>تاريخ الإصدار: {{ print_date }}</p>
+        </div>
+    </div>
+
+    <div class="developer-info">
+        <div class="copyright">جميع الحقوق محفوظة &copy; {% now "Y" %} نظام إدارة المدارس</div>
+        <div class="developer">تم التطوير بواسطة: Souleymane Dougri | البريد الإلكتروني: soulydougri@gmail.com</div>
+    </div>
+</body>
+</html>

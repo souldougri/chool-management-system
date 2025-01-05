@@ -1,0 +1,15 @@
+{% extends "admin/change_list.html" %}
+{% load i18n admin_urls %}
+
+{% block object-tools %}
+    <div class="object-tools">
+        {% block object-tools-items %}
+            {{ block.super }}
+            <li>
+                <a href="{% url 'print_student_list' %}" class="addlink" target="_blank">
+                    طباعة قائمة الطلاب
+                </a>
+            </li>
+        {% endblock %}
+    </div>
+{% endblock %}

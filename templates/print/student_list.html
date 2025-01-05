@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>قائمة الطلاب</title>
+    <link rel="stylesheet" href="/static/css/footer.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .school-name {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: right;
+        }
+        th {
+            background-color: #f0f0f0;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: left;
+            margin-bottom: 50px;
+        }
+        .class-header {
+            background-color: #e0e0e0;
+            padding: 10px;
+            margin: 20px 0 10px 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="school-name">مدرستنا</div>
+        <h2>قائمة الطلاب</h2>
+    </div>
+    
+    {% regroup students by classes as class_list %}
+    {% for class_group in class_list %}
+    <div class="class-header">
+        {{ class_group.grouper.name }}
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>رقم الطالب</th>
+                <th>الاسم</th>
+                <th>تاريخ الميلاد</th>
+                <th>الجنس</th>
+                <th>رقم الهاتف</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in class_group.list %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ student.student_id }}</td>
+                <td>{{ student.first_name }} {{ student.last_name }}</td>
+                <td>{{ student.date_of_birth }}</td>
+                <td>{{ student.get_gender_display }}</td>
+                <td>{{ student.phone_number }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endfor %}
+    
+    <div class="footer">
+        <p>تاريخ الطباعة: {{ print_date }}</p>
+        <p>إجمالي عدد الطلاب: {{ students|length }}</p>
+    </div>
+
+    <div class="developer-info">
+        <div class="copyright">جميع الحقوق محفوظة &copy; {% now "Y" %} نظام إدارة المدارس</div>
+        <div class="developer">تم التطوير بواسطة: Souleymane Dougri | البريد الإلكتروني: soulydougri@gmail.com</div>
+    </div>
+</body>
+</html>

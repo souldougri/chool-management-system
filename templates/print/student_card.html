@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>بطاقة الطالب</title>
+    <link rel="stylesheet" href="/static/css/footer.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .card {
+            border: 2px solid #000;
+            padding: 20px;
+            width: 400px;
+            margin: 0 auto;
+            margin-bottom: 50px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .school-name {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .student-info {
+            margin-bottom: 20px;
+        }
+        .student-info p {
+            margin: 5px 0;
+        }
+        .photo-placeholder {
+            border: 1px dashed #000;
+            width: 100px;
+            height: 120px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="school-name">مدرستنا</div>
+            <div>بطاقة طالب</div>
+        </div>
+        
+        <div class="photo-placeholder">
+            صورة الطالب
+        </div>
+        
+        <div class="student-info">
+            <p><strong>الاسم:</strong> {{ student.first_name }} {{ student.last_name }}</p>
+            <p><strong>رقم الطالب:</strong> {{ student.student_id }}</p>
+            <p><strong>الصف:</strong> {{ student.classes.name }}</p>
+            <p><strong>تاريخ الميلاد:</strong> {{ student.date_of_birth }}</p>
+            <p><strong>العنوان:</strong> {{ student.address }}</p>
+            <p><strong>رقم الهاتف:</strong> {{ student.phone_number }}</p>
+        </div>
+        
+        <div style="text-align: left;">
+            <p>تاريخ الإصدار: {{ print_date }}</p>
+        </div>
+    </div>
+
+    <div class="developer-info">
+        <div class="copyright">جميع الحقوق محفوظة © {% now "Y" %} نظام إدارة المدارس</div>
+        <div class="developer">تم التطوير بواسطة: Souleymane Dougri | البريد الإلكتروني: soulydougri@gmail.com</div>
+    </div>
+</body>
+</html>

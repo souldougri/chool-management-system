@@ -1,0 +1,16 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}
+
+{% block footer %}
+<div class="developer-info">
+    <div class="copyright">جميع الحقوق محفوظة © {% now "Y" %} نظام إدارة المدرسة</div>
+    <div class="developer">تم التطوير بواسطة: Souleymane Dougri | البريد الإلكتروني: soulydougri@gmail.com</div>
+</div>
+{% endblock %}

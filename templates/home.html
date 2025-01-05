@@ -1,0 +1,213 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}الصفحة الرئيسية - نظام إدارة المدرسة{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+<style>
+    .content {
+        padding: 20px;
+    }
+
+    .page-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .page-header h1 {
+        font-size: 2em;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .page-header p {
+        color: #666;
+    }
+
+    .card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        padding: 30px;
+        margin-bottom: 20px;
+        text-align: center;
+        height: 100%;
+    }
+
+    .icon {
+        font-size: 48px;
+        margin-bottom: 20px;
+    }
+
+    .icon-certificate {
+        color: #ffc107;
+    }
+
+    .icon-classroom {
+        color: #28a745;
+    }
+
+    .icon-student {
+        color: #007bff;
+    }
+
+    .card h2 {
+        color: #333;
+        margin-bottom: 15px;
+        font-size: 1.5em;
+    }
+
+    .card p {
+        color: #666;
+        margin-bottom: 20px;
+        line-height: 1.5;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: opacity 0.3s;
+        color: white;
+    }
+
+    .btn:hover {
+        opacity: 0.9;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+    }
+
+    .stats-card {
+        background: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .stats-card h2 {
+        color: #333;
+        margin-bottom: 20px;
+        text-align: right;
+    }
+
+    .stats-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .stats-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .stats-item:last-child {
+        border-bottom: none;
+    }
+
+    .stats-value {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        color: white;
+        font-weight: bold;
+    }
+
+    .stats-value.primary {
+        background-color: #007bff;
+    }
+
+    .stats-value.success {
+        background-color: #28a745;
+    }
+
+    .stats-value.info {
+        background-color: #17a2b8;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="page-header">
+        <h1>مرحباً بك في نظام إدارة المدرسة</h1>
+        <p>نظام متكامل لإدارة شؤون الطلاب والفصول والشهادات</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="icon icon-certificate">⭐</div>
+                <h2>إدارة الشهادات</h2>
+                <p>إصدار وإدارة الشهادات وكشوف الدرجات</p>
+                <a href="{% url 'admin:certificates_certificate_changelist' %}" class="btn btn-warning">إدارة الشهادات</a>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card">
+                <div class="icon icon-classroom">👥</div>
+                <h2>إدارة الفصول</h2>
+                <p>إدارة الفصول الدراسية والمواد والمعلمين</p>
+                <a href="{% url 'admin:classes_classroom_changelist' %}" class="btn btn-success">إدارة الفصول</a>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card">
+                <div class="icon icon-student">🎓</div>
+                <h2>إدارة الطلاب</h2>
+                <p>إضافة وتعديل وحذف بيانات الطلاب وإصدار البطاقات المدرسية</p>
+                <a href="{% url 'admin:students_student_changelist' %}" class="btn btn-primary">إدارة الطلاب</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="stats-card">
+        <h2>إحصائيات سريعة</h2>
+        <ul class="stats-list">
+            <li class="stats-item">
+                <span>عدد الطلاب</span>
+                <span class="stats-value primary">{{ total_students }}</span>
+            </li>
+            <li class="stats-item">
+                <span>عدد الفصول</span>
+                <span class="stats-value success">{{ total_classes }}</span>
+            </li>
+            <li class="stats-item">
+                <span>عدد المعلمين</span>
+                <span class="stats-value info">{{ total_teachers }}</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="developer-info">
+    <div class="copyright">جميع الحقوق محفوظة &copy; {% now "Y" %}</div>
+    <div class="developer">تم التطوير بواسطة: Souleymane Dougri | البريد الإلكتروني: soulydougri@gmail.com</div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

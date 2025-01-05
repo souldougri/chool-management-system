@@ -1,0 +1,35 @@
+.button {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 2px;
+    background-color: #417690;
+    color: #fff !important;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.button:hover {
+    background-color: #205067;
+    text-decoration: none;
+    color: #fff;
+}
+
+.print-list-button {
+    float: right;
+    margin: 0 10px;
+}
+
+.object-tools {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.object-tools .btn {
+    padding: 8px 15px;
+    background-color: #417690;
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+}

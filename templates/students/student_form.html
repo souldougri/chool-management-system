@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    {% if form.instance.pk %}
+    تعديل بيانات الطالب
+    {% else %}
+    إضافة طالب جديد
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h3>
+            {% if form.instance.pk %}
+            تعديل بيانات الطالب
+            {% else %}
+            إضافة طالب جديد
+            {% endif %}
+        </h3>
+    </div>
+    <div class="card-body">
+        {% crispy form %}
+    </div>
+</div>
+{% endblock %}

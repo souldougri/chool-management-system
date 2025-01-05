@@ -1,0 +1,47 @@
+.developer-info {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+    color: #666;
+    background-color: transparent;
+}
+
+.copyright {
+    margin-bottom: 0;
+}
+
+.developer {
+    display: none;
+}
+
+/* عرض معلومات المطور عند تحريك الماوس فوق حقوق النشر */
+.developer-info:hover .developer {
+    display: block;
+    margin-top: 5px;
+    font-size: 11px;
+    color: #666;
+}
+
+/* تعديلات خاصة بلوحة الإدارة */
+#footer .developer-info {
+    position: relative;
+    margin-top: 20px;
+}
+
+/* تعديلات للطباعة */
+@media print {
+    .developer-info {
+        position: fixed;
+        bottom: 0;
+        margin-top: 30px;
+        page-break-after: always;
+    }
+    
+    .developer {
+        display: block;
+    }
+}
